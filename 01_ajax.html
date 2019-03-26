@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <title>slide example</title>
+    <style>
+       
+    </style>
+    <script type="text/javascript">
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+            //console.log(this.readyState, this.status);
+            if(this.readyState ==  4) {
+                var d = JSON.parse(this.response);
+                var data = d.results;
+                var t = document.getElementById('result');
+                for(var i in data){
+                    var c = document.getElementById('result').cloneNode(true);
+                    c.removeAttribute('id');
+                    c.querySelector('dt').innerHTML = data[i].date;
+                    c.querySelector('dd').innerHTML = data[i].image;
+                    document.body.appendChild(c);
+                }
+                t.remove();
+            }
+        }
+        req.open("GET","data.txt");
+        req.send();
+    </script>
+    
+</head>
+<body>
+    <dl id="result">
+            <dt>:</dt><dd></dd>
+    </dl>
+</body>
+</html>

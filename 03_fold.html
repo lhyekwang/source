@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <title>slide example</title>
+    <style>
+     .side_mail{position:relative;padding:13px 0 7px;border-top:1px solid #f2f2f2}
+    .side_mail_type1{padding:9px 0 7px}
+    .side_mail_type1 .inner_btn{width:35px}
+    .side_notice + .side_mail{border-bottom:1px solid #f2f2f2;}
+    .side_banner + .side_mail{border-top:none}
+    .side_mail .tit_side{padding:5px 0 10px 22px;color:rgba(0,0,0,0.4);font-size:15px;font-weight:normal;}
+    .side_mail .tit_side + .side_list{margin-top:-6px;}
+    .side_mail .btn_list_fold{position:absolute;top:14px;right:17px;width:30px;height:30px}
+    .side_mail .ico_fold{display:block;width:12px;height:7px;margin:0 auto;background-position:-180px -50px}
+    .side_mail .fold_close{background-position:-120px -50px}
+    .side_list {display: none}
+    .side_list li{overflow:hidden;position:relative;height:48px;line-height:48px}
+    .side_list .btn_list{position:absolute;top:0;right:0;height:45px}
+    .side_list .btn_list .inner_btn{display:block;overflow:hidden;position:absolute;top:11px;right:24px;height:22px;padding:0 8px;color:rgba(0,0,0,0.6);font-size:12px;line-height:22px;border-radius:15px;border:1px solid #f0f0f0;vertical-align:middle;}
+    .side_list .link_mail{display:block;padding:13px 25px 0 51px;height:34px;}
+    .side_list .link_mail .inner_link{display:block;position:relative;color:rgba(0,0,0,0.85);font-size:15px;line-height:19px}
+    .side_list .on .link_mail .inner_link{font-weight:bold}
+    .side_list i{position:absolute;top:0;left:-27px;}
+    .side_list .ico_mailhome{top:2px;left:-29px;}
+    .side_list .ico_envelopes{top:3px}
+    .side_list .ico_envelope{top:3px}
+    .side_list .ico_sendme{top:2px}
+    .side_list .ico_plane{top:2px;left:-28px;}
+    .side_list .ico_unfolder{top:2px}
+    .side_list .ico_folder{top:2px}
+    .side_list .ico_social{top:2px;left:-29px;}
+    .side_list .ico_spam{top:1px}
+    .side_list .ico_trash{top:1px;left:-26px}
+    .side_list .ico_bill{top:2px}
+    .side_list .ico_shopping{top:2px}
+    .side_list .ico_promotion{top:3px}
+    .side_list .ico_notice{top:1px}
+    .side_list .num_mail{padding:0 0 0 6px;color:rgba(0,0,0,0.4);font-weight:normal;}
+    .side_list .on .num_mail{color:#111;}
+    </style>    
+</head>
+<body>
+    <div class="side_mail">
+        <h3 class="tit_side">내메일함</h3>
+        <ul class="side_list">
+            <li> <a href="#none" class="link_mail"><span class="inner_link"><i class="img_mail ico_folder"></i>업무메일<span
+                            class="num_mail">74</span></span></a>
+            </li>
+        </ul>
+        <button class="btn_list_fold"><span class="img_mail ico_fold">열기</span></button>
+    </div>
+    <div class="side_mail">
+        <h3 class="tit_side">스마트분류함</h3>
+        <ul class="side_list" style="display:none">
+            <li> <a href="#none" class="link_mail"><span class="inner_link"><i class="img_mail ico_bill"></i>청구서</span></a>
+            </li>
+            <li> <a href="#none" class="link_mail"><span class="inner_link"><i
+                            class="img_mail ico_shopping"></i>쇼핑</span></a>
+            </li>
+            <li> <a href="#none" class="link_mail"><span class="inner_link"><i class="img_mail ico_social"></i>소셜<span
+                            class="num_mail"></span></span></a>
+            </li>
+            <li> <a href="#none" class="link_mail"><span class="inner_link"><i class="img_mail ico_promotion"></i>프로모션<span
+                            class="num_mail">166</span></span></a>
+            </li>
+        </ul>
+        <button class="btn_list_fold"><span class="img_mail ico_fold fold_close">열기</span></button>
+    </div>
+ <script type="text/javascript">
+    var links = document.querySelectorAll('.btn_list_fold');
+    var  sl = document.querySelectorAll('.side_list');
+    function foldHandel(index){   
+    return function linkEvent(event){
+        if(sl[index].style.display == "block"){
+            sl[index].style.display = "none";
+            links[index].childNodes[0].innerHTML = '열기';
+         }else{
+            sl[index].style.display = "block";
+            links[index].childNodes[0].innerHTML = '닫기';
+         }
+       }  
+    }
+    for (var i = 0; i < links.length; i++) {
+         links[i].onclick = foldHandel(i);
+    }
+</script>
+</body>
+</html>

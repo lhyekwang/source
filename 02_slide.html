@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
+    <title>slide example</title>
+    <style>
+     ul{overflow:hidden;width:100%;}
+     ul li{overflow:hidden;float:left;width:30%;height:200px;margin:4px;}
+     .thumb_g{display:block}
+     ul .on{border:1px solid grey;box-sizing:border-box;}
+     ul .on img{opacity:0.5}
+       
+    </style>
+    
+</head>
+<body>
+    <button id="selectButton">모두선택하기</button>
+    <ul id="imgList">
+    </ul>
+    <script type="text/javascript">
+        var req = new XMLHttpRequest();
+        req.onreadystatechange = function(){
+            if(this.readyState == 4){
+                //console.log(this.response);
+                var data = JSON.parse(this.response).results;
+                for(var i in data){
+                    var list = document.getElementById("imgList");
+                    var a = document.createElement("li");
+                    list.appendChild(a);
+                    var img = document.createElement("img");
+                    a.onclick = function(){
+                        this.classList.toggle("on");
+                    }
+                    a.appendChild(img);
+                    img.src = data[i].image;
+                    img.setAttribute("class","thumb_g");
+                }
+            }
+        }        
+        req.open('GET','data/sample01.txt');
+        req.send();
+        var b = document.getElementById("selectButton");
+        b.onclick = function(){
+            var li = document.getElementsByTagName("li");
+            for(var i = 0; i < li.length ; i++){
+                if(b.innerText == '모두선택하기'){
+                    li[i].classList.add("on");
+                }else{
+                    li[i].classList.remove("on"); 
+                }
+            }
+            if(b.innerText == '모두선택하기'){
+                b.innerText = '선택해제하기';
+            }else{
+                b.innerText = '모두선택하기';
+            }
+        }
+    </script>
+</body>
+</html>

@@ -14,32 +14,31 @@
  <button data-cl='minus'>-</button>
  <button data-cl='plus'>+</button>
  <script>
-    var num = document.getElementById('num');
-    var bs = document.querySelectorAll('button');
-    var n = Number(1);
-    num.value = n;
-    function count(){        
-        result = num.value; 
+    var inputNumber = document.getElementById('num');
+    var buttonElement = document.querySelectorAll('button');
+    var n = 1;
+    inputNumber.value = n;
+    function count(result){        
+        result = Number(inputNumber.value); 
         calc = this.getAttribute('data-cl');
-        if(isNaN(result)){
-            //console.log(parseFloat(result));
-            result = parseFloat(result);
-            alert('숫자만뽑아줄께');
-        }else{    
+                        
+        
+        console.log(result);
+        if(result < -5 || result > 5 || isNaN(result)){
+            alert('숫자가 너무 크거나 작아요!');
+        }else{
             if(calc == 'minus'){             
-                //console.log("뺄꺼야");
-                result--;
+                    //console.log("뺄꺼야");
+                    result--;
             }else if(calc == 'plus'){
-                //console.log("더할꺼야");
-                result++;
-            } 
-        }   
-              
-        num.value = result;
-
+                    //console.log("더할꺼야");
+                    result++;
+            }
+            inputNumber.value = result;
+        }
     }
-    for(var i = 0; i<bs.length;i++){
-        bs[i].addEventListener('click',count);
+    for(var i = 0; i<buttonElement.length;i++){
+        buttonElement[i].addEventListener('click',count);
     }
 
  </script>

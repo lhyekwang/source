@@ -4,47 +4,83 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-    <title>count example</title>
-    <style>
+    <title>count example</title>    <style>
      
     </style>    
 </head>
 <body>  
-<p>5보다 크거나 5보다 작은수는 넣지마</p>
- <input type="text" id="num" class="inp_txt"> 
- <button data-cl='minus'>-</button>
- <button data-cl='plus'>+</button>
- <script>
-    var inputNumber = document.getElementById('num');
-    var buttonElement = document.querySelectorAll('button');
-    var n = 1;
-    inputNumber.value = n;
-    function count(){        
-        result = Number(inputNumber.value); 
-        calc = this.getAttribute('data-cl'); 
-        if(calc == 'minus'){             
-                //console.log("뺄꺼야");
-                result--;
-        }else if(calc == 'plus'){
-                //console.log("더할꺼야");
-                result++;
-        }
-        if(result < -5 || result > 5){
-            alert('너무크거나작어!'); 
-            result = result; 
-            return false;
-        }else if(isNaN(inputNumber.value)){
-            alert('숫자넣어');   
-            return false;     
-        }else{
-            inputNumber.value = result;
-        }
-    }  
-    
-    for(var i = 0; i<buttonElement.length;i++){
-        buttonElement[i].addEventListener('click',count);            
-    }
+    <input type="text" id="inputNum" class="inp_txt" placeholder="숫자넣어보아"> 
+    <button data-type='minus' id="buttonMinus">-</button>
+    <button data-type='plus' id="buttonPlus">+</button>
+    <span class="message" style="color:red"></span>
+    <script>
+        'use strict';
+        var result; 
+        var calc;
+        var calcAll;
+        var inputNumber = document.getElementById('inputNum');
+        var buttonElement = document.querySelectorAll('button');
+        var guideText = document.querySelector('.message');
+        var buttonMinus = document.getElementById('buttonMinus');
+        var buttonPlus = document.getElementById('buttonPlus');
+        var maxLevel = 5;
+        var minLevel = -5;
+        var state = 1;
+        var result = parseInt(inputNumber.value);
 
- </script>
+        function count(){    
+            result = parseInt(inputNumber.value);          
+            calc = this.getAttribute('data-type');
+            if(calc == 'minus'){ //console.log("뺄꺼야");
+                    result--;
+            }else if(calc == 'plus'){ //console.log("더할꺼야");
+                result++;
+            }            
+            if(state == 0){ //console.log("에러상황");
+                result = result;
+            }else{                
+                inputNumber.value = result;
+            }             
+            inpuEvent();          
+        }  
+
+        function inpuEvent(){
+            result = parseInt(inputNumber.value);   
+            if(result < minLevel || result > maxLevel ){ 
+                guideText.innerHTML = ('숫자범위넘음!');
+                state = 0;            
+            }else if(isNaN(result)){
+                guideText.innerHTML = ('숫자넣으시옹!'); 
+                state = 0;
+            }else{
+                state = 1;
+                guideText.innerHTML = ('');
+            }            
+            if(result == maxLevel && state == 1){
+                guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
+                buttonPlus.disabled = true;
+                state = 2;  
+            }else if(result == minLevel && state == 1){  
+                guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');
+                buttonMinus.disabled = true;
+                state = 2; 
+            }else{
+                for(var i = 0; i<buttonElement.length;i++){                
+                    buttonElement[i].disabled = false;            
+                }
+            }         
+
+            
+
+        }
+        
+        for(var i = 0; i<buttonElement.length;i++){
+            buttonElement[i].addEventListener('click',count);            
+        }
+
+        inputNumber.addEventListener('keyup', inpuEvent);
+        
+
+    </script>
 </body>
 </html>

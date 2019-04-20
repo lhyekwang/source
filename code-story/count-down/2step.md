@@ -4,14 +4,14 @@ description: '기능 추가 : 최대최소넣기'
 
 # 2step
 
-리뷰변경사
+### 리뷰변경사항 
 
 * [x] 변수명을 정확하
 * [x] 숫자검사부분만 함수로 적용
 * [x] 형변환
 * [x] parseInt 로 변
 
-기능구현 
+### 기능구현 
 
 * [x] 타입체크
 * [x] input 안에 keyup 함수 적용
@@ -19,7 +19,7 @@ description: '기능 추가 : 최대최소넣기'
 * [ ] 함수 내부에 result, calc 변수 선언시 var, let, const 키워드
 * [x] 기능별로 함수 분
 
-이론체크사항
+### 이론체크사항
 
 * [ ] JS 데이타 타입 
 * [ ] documnet.querySelecotrAll 유사배열 사용시 유의점
@@ -28,6 +28,8 @@ description: '기능 추가 : 최대최소넣기'
 * [ ] 조건문 정리 \(if, 삼항연산자, switch // ==, === 체크타입\) 
 * [ ] 할당연산계산법 
 * [ ] parseFloat, parseInt 의 차이
+
+### 코드 
 
 ```javascript
 <script>

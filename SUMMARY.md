@@ -1,6 +1,6 @@
 # Table of contents
 
-* [test](README.md)
-* [test2](test2.md)
-* [test3](test3.md)
+* [Language](README.md)
+* [JS](js/README.md)
+  * [BASIC](js/basic.md)
 

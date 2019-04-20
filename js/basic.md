@@ -2,7 +2,7 @@
 description: 기본설명
 ---
 
-# BASIC
+# theory
 
 > 프로그램이라는건 컴퓨터의 관점으로 바라보는것.
 >

@@ -13,7 +13,7 @@ description: '기능 추가 : 최대최소넣기'
 
 ### 기능구현 
 
-* [x] 타입체크
+* [ ] 타입체크 \(비교연산자 타입비\)
 * [x] input 안에 keyup 함수 적용
 * [x] 최대최소넣기 
 * [ ] 함수 내부에 result, calc 변수 선언시 var, let, const 키워드

@@ -5,6 +5,7 @@
   * [Basic](js/basic-1.md)
   * [theory](js/basic.md)
 * [Summary](summary/README.md)
+  * [NaN](summary/isnan.md)
   * [클로져\(closure\)](summary/closure.md)
 
 ## Code Story

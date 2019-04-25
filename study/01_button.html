@@ -4,8 +4,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
-    <title>count example</title>    <style>
-     
+    <title>count example</title>    
+    <style>     
     </style>    
 </head>
 <body>  
@@ -31,12 +31,21 @@
         function count(){    
             result = parseInt(inputNumber.value);          
             calc = this.getAttribute('data-type');
-            if(calc == 'minus'){ //console.log("뺄꺼야");
+            // if(calc === 'minus'){ //console.log("뺄꺼야");
+            //         result--;
+            // }else if(calc === 'plus'){ //console.log("더할꺼야");
+            //     result++;
+            // } 
+            // calc === 'minus' ? result--; : result++;     
+            switch (calc)   {
+                case 'minus':
                     result--;
-            }else if(calc == 'plus'){ //console.log("더할꺼야");
-                result++;
-            }            
-            if(state == 0){ //console.log("에러상황");
+                    break;
+                case 'plus' :
+                    result ++;
+                    break;
+            }   
+            if(state === 0){ //console.log("에러상황");
                 result = result;
             }else{                
                 inputNumber.value = result;

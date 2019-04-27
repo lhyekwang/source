@@ -8,7 +8,8 @@
     <style>     
     </style>    
 </head>
-<body>  
+<body> 
+    <p id="titleText"><em>5</em>이상 <em>-5</em> 이하는 안됍니다.</p>
     <input type="text" id="inputNum" class="inp_txt" placeholder="숫자넣어보아"> 
     <button data-type='minus' id="buttonMinus">-</button>
     <button data-type='plus' id="buttonPlus">+</button>
@@ -17,18 +18,19 @@
         'use strict';
         var result; 
         var calc;
-        var calcAll;
         var inputNumber = document.getElementById('inputNum');
         var buttonElement = document.querySelectorAll('button');
         var guideText = document.querySelector('.message');
         var buttonMinus = document.getElementById('buttonMinus');
         var buttonPlus = document.getElementById('buttonPlus');
+        var titleText = document.getElementById('titleText');
         var maxLevel = 5;
         var minLevel = -5;
-        var state = 1;
-        var result = parseInt(inputNumber.value);
+        var state = "calcIng"; 
+        
+        titleText.innerHTML = maxLevel +"보다 작게"+ minLevel + "보다 크게 입력하세요";       
 
-        function count(){    
+        function count(){
             result = parseInt(inputNumber.value);          
             calc = this.getAttribute('data-type');
             // if(calc === 'minus'){ //console.log("뺄꺼야");
@@ -36,52 +38,72 @@
             // }else if(calc === 'plus'){ //console.log("더할꺼야");
             //     result++;
             // } 
-            // calc === 'minus' ? result--; : result++;     
+            // calc === 'minus' ? result--; : result++;  
             switch (calc)   {
-                case 'minus':
-                    result--;
-                    break;
-                case 'plus' :
-                    result ++;
-                    break;
-            }   
-            if(state === 0){ //console.log("에러상황");
+                    case 'minus':
+                        result--;
+                        break;
+                    case 'plus' :
+                        result ++;
+                        break;
+            } 
+               
+            if(state === "clacDisabled"){ //console.log("에러상황");
                 result = result;
-            }else{                
+            }else{
+                
                 inputNumber.value = result;
             }             
             inpuEvent();          
         }  
 
         function inpuEvent(){
-            result = parseInt(inputNumber.value);   
-            if(result < minLevel || result > maxLevel ){ 
-                guideText.innerHTML = ('숫자범위넘음!');
-                state = 0;            
-            }else if(isNaN(result)){
-                guideText.innerHTML = ('숫자넣으시옹!'); 
-                state = 0;
+            result = parseInt(inputNumber.value);
+            if(isNaN(result)){
+                state = "clacDisabled";
+            }else if(result > maxLevel){
+                state = 'calcOver';      
+            }else if(result == maxLevel){
+                state = 'calcMax';         
+            }else if(result < minLevel){
+                state = "calcFail";
+            }else if(result == minLevel){
+                state = "calcMin";
             }else{
-                state = 1;
-                guideText.innerHTML = ('');
-            }            
-            if(result == maxLevel && state == 1){
-                guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
-                buttonPlus.disabled = true;
-                state = 2;  
-            }else if(result == minLevel && state == 1){  
-                guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');
-                buttonMinus.disabled = true;
-                state = 2; 
-            }else{
+                state = "calcIng";
+            }  
+
+            if(state == "calcIng"){
+                guideText.innerHTML = ('계산한다요'); 
                 for(var i = 0; i<buttonElement.length;i++){                
                     buttonElement[i].disabled = false;            
                 }
-            }         
+            }else if(state == "calcOver"){
+                guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
+                buttonPlus.disabled = true;
+                buttonMinus.disabled = true;
+            }else if(state == "calcMax"){
+                guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
+                buttonPlus.disabled = true;
+            }else if(state == "calcMin"){
+                guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');                
+                buttonMinus.disabled = true;
+            }else if(state == "calcFail"){
+                guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');                
+                buttonPlus.disabled = true;
+                buttonMinus.disabled = true;
+            }else if(state == "clacDisabled"){
+                guideText.innerHTML = ('숫자넣으시옹!'); 
+                for(var i = 0; i<buttonElement.length;i++){                
+                    buttonElement[i].disabled = false;            
+                }
+            }           
 
-            
+        console.log(state);             
 
         }
+
+        
         
         for(var i = 0; i<buttonElement.length;i++){
             buttonElement[i].addEventListener('click',count);            

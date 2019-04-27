@@ -11,3 +11,16 @@ description: 아직완료되지 않았음
 
 내부함수 안에서 선언한 변수에 접근이 가능하다
 
+```text
+divd
+
+afe
+
+```
+
+> alseifaf
+>
+> afeafiaenf
+
+
+

@@ -1,10 +1,5 @@
 # NaN
 
-* [NaN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/NaN)
-* [Number.NaN](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/NaN)
-* [Number.isNaN\(\)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/Number/isNaN)
-* [isNaN\(\)](https://developer.mozilla.org/ko/docs/Web/JavaScript/Reference/Global_Objects/isNaN)
-
 ### 값 - NaN ,  IsNaN , Number.NaN 
 
 NaN은 전역객체의 속성이다. Number.NaN 과 같음. Math함수시 에러가 나거나 parseInt 의 값이 에러가 날때 NaN을 반환한다.

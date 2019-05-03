@@ -7,6 +7,7 @@
     <title>count example</title>    
     <style>   
     .inp_txt{border:1px solid green}  
+    button{border:1px solid goldenrod}  
     </style>    
 </head>
 <body> 
@@ -17,7 +18,7 @@
     <span class="message" style="color:red"></span>
     <script>
         'use strict';
-        var result; 
+        var result = ''; 
         var inputNumber = document.getElementById('inputNum');
         var buttonElement = document.querySelectorAll('button');
         var guideText = document.querySelector('.message');
@@ -64,36 +65,36 @@
                 state = "clacDisabled";
             }else if(result > maxLevel){
                 state = 'calcOver';      
-            }else if(result == maxLevel){
+            }else if(result === maxLevel){
                 state = 'calcMax';         
             }else if(result < minLevel){
                 state = "calcFail";
-            }else if(result == minLevel){
+            }else if(result === minLevel){
                 state = "calcMin";
             }else{
                 state = "calcIng";
             }  
 
-            if(state == "calcIng"){
+            if(state === "calcIng"){
                 guideText.innerHTML = ('계산한다요'); 
                 for(var i = 0; i<buttonElement.length;i++){                
                     buttonElement[i].disabled = false;            
                 }
-            }else if(state == "calcOver"){
+            }else if(state === "calcOver"){
                 guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
                 buttonPlus.disabled = true;
                 buttonMinus.disabled = true;
-            }else if(state == "calcMax"){
+            }else if(state === "calcMax"){
                 guideText.innerHTML = ( maxLevel+'보다큰수는안되어요!');
                 buttonPlus.disabled = true;
-            }else if(state == "calcMin"){
+            }else if(state === "calcMin"){
                 guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');                
                 buttonMinus.disabled = true;
-            }else if(state == "calcFail"){
+            }else if(state === "calcFail"){
                 guideText.innerHTML = ( minLevel+' 보다작은수는안되어요!');                
                 buttonPlus.disabled = true;
                 buttonMinus.disabled = true;
-            }else if(state == "clacDisabled"){
+            }else if(state === "clacDisabled"){
                 guideText.innerHTML = ('숫자넣으시옹!'); 
                 for(var i = 0; i<buttonElement.length;i++){                
                     buttonElement[i].disabled = false;            

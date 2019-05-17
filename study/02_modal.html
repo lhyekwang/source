@@ -6,15 +6,23 @@
     <meta http-equiv="X-UA-Compatible" content="IE=EDGE" />
     <title>count example</title>    
     <style>   
-    .modal_layer{position:fixed;top:50%;left:50%;z-index:1;width:500px;height:400px;border:1px solid red;background-color:#fff}  
+    .modal_layer{position:fixed;top:50%;left:50%;z-index:1;width:200px;height:300px;border:1px solid red;background-color:#fff}  
     button{width:300px;height:20px;border:1px solid goldenrod;} 
-    .dimmed_layer{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#000;opacity:0.5;transition: opacity 0.5s} 
-    .btn_close{position:absolute;bottom:0;} 
-    
+    .dimmed_layer{position:fixed;top:0;left:0;width:100%;height:100%;background-color:#000;opacity:0} 
+    .dimmed_layer.dimmed_active{animation:dimmeModtion .4s forwards} 
+    .btn_close{position:absolute;bottom:0;width:100%} 
+    .dimmed{overflow:hidden}
+    @keyframes dimmeModtion{
+        0% {opacity:0;}
+        100%{opacity:0.5}
+    }
     </style>    
 </head>
 <body>    
     <button class="btn_modal">레이어팝업 열기</button>
+    <iframe src="https://m.daum.net" width="100%" height="800px">
+
+    </iframe>
     <div class="modal_layer">
         <p>Window Content.</p>
         <button class="btn_close">닫기</button>
@@ -29,11 +37,8 @@
         var modalLayerHeight = modalLayer.scrollHeight;
         var modalLayerLeftPosition = parseInt(-modalLayerWidth / 2);
         var modalLayerTopPosition = parseInt(-modalLayerHeight / 2);
-        // console.log('modalLayerLeftPosition : ' + modalLayerLeftPosition);
-        // console.log('modalLayerTopPosition : ' + modalLayerTopPosition);
         modalLayer.style.marginLeft = modalLayerLeftPosition+"px";
         modalLayer.style.marginTop = modalLayerTopPosition+"px";
-        // var screenWidth = document.body();
         var dimmedLayer = document.createElement('div');
         dimmedLayer.className='dimmed_layer';
         modalLayer.style.display = "none";
@@ -54,12 +59,15 @@
             // console.log(btnModal);
             if(state == 0){
                 modalLayer.style.display = "block";
-                document.body.appendChild(dimmedLayer);                
-                state = 1;
+                document.body.appendChild(dimmedLayer);     
+                document.body.className = 'dimmed';      
+                dimmedLayer.classList.add("dimmed_active");      
+                state++;
             }else{
                 modalLayer.style.display = "none";
-                document.body.removeChild(dimmedLayer);
-                state = 0;
+                document.body.removeChild(dimmedLayer);   
+                document.body.className = ''; 
+                state--;
             }
             console.log(state);
         }

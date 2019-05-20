@@ -42,22 +42,22 @@
         var dimmedLayer = document.createElement('div');
         dimmedLayer.className='dimmed_layer';
         modalLayer.style.display = "none";
-        var state  = 0;
+        var state  = true;
         
 
         btnModal.addEventListener('click', modal);
         btnModalClose.addEventListener('click', function(){
-            state = 1;
+            state = false;
             modal();
         });
         dimmedLayer.addEventListener('click', function(){
-            state = 1;
+            state = false;
             modal();
         })
         
         function modal(){
             // console.log(btnModal);
-            if(state == 0){
+            if(state){
                 modalLayer.style.display = "block";
                 document.body.appendChild(dimmedLayer);     
                 document.body.className = 'dimmed';      

@@ -60,7 +60,7 @@
         var buttonChange = document.querySelector(".button_change");
         var boxExample = document.querySelectorAll(".box_example");
         var currentCountNum; 
-        var maxCount;             
+        var maxCount;
         var maxCountNum = Number(10); // 최대값
         maxCount.innerHTML = maxCountNum; 
         textArea.setAttribute('maxlength',maxCountNum)
@@ -82,27 +82,34 @@
             // console.log(e);     
             // console.log(e.path[1]);     
             // console.log(txtDesc);     
-            console.log(boxExample);  
+            //console.log(boxExample); 
+            var n = 0;
             currentCount.innerHTML = textArea.value.length;
             currentCountNum = Number(currentCount.innerHTML);
             console.log(currentCountNum);
             console.log(maxCountNum);            
             if(currentCountNum === maxCountNum){
-                txtDesc.classList.remove('hide');                
-                txtDesc.classList.add('show'); 
-            }else if(currentCountNum < maxCountNum && txtDesc.classList.contains('show')){
-                txtDesc.classList.add('hide');
-                txtDesc.classList.remove('show'); 
+                txtDesc[n].classList.remove('hide');                
+                txtDesc[n].classList.add('show'); 
+            }else if(currentCountNum < maxCountNum && txtDesc[n].classList.contains('show')){
+                txtDesc[n].classList.add('hide');
+                txtDesc[n].classList.remove('show'); 
             }
         }
 
         function transUnit(){
             var t = celsisusInput.value;
+            var n = 1;
+            console.log(t.length);
+            console.log(txtDesc[n]);
+
             if(t.length == 0){
-                console.log(celsisusInput.value);
-                txtDesc.classList.remove('show');                
-            }else if(txtDesc.classList.contains('show')){
-                txtDesc.classList.remove('hide');
+                // console.log(celsisusInput.value);
+                txtDesc[n].classList.remove('hide'); 
+                txtDesc[n].classList.add('show');               
+            }else if(txtDesc[n].classList.contains('show')){
+                txtDesc[n].classList.remove('show');
+                txtDesc[n].classList.add('hide');
             }
         }
         
